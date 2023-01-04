@@ -1,24 +1,21 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+
+// import PropTypes from 'prop-types';
 
 export class ContactForm extends Component {
-  static propTypes = { submit: PropTypes.func.isRequired };
-
   state = {
     name: '',
     number: '',
   };
 
-  makeSubmit = e => {
-    e.preventDefault();
-    this.props.submit({
-      id: nanoid(),
-      name: this.state.name,
-      number: this.state.number,
-    });
-    this.formReset();
-  };
+  // makeSubmit = e => {
+  //   e.preventDefault();
+  //   this.props.submit({
+  //     name: this.state.name,
+  //     number: this.state.number,
+  //   });
+  //   this.formReset();
+  // };
 
   makeChange = e => {
     this.setState({
