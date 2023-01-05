@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
-// import { Filter } from './Filter/Filter'
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -43,8 +43,13 @@ export class App extends Component {
     });
   };
 
+  onFilterAlter = e => {
+    this.setState({ filter: e.target.value });
+  };
+
   render() {
-    const { create, deleteContact } = this;
+    const { create, deleteContact, onFilterAlter } = this;
+    const { contacts, filter } = this.state;
 
     return (
       <div>
@@ -52,11 +57,8 @@ export class App extends Component {
         <ContactForm create={create} />
 
         <h2>Contacts</h2>
-        {/* <Filter ... /> */}
-        <ContactList
-          contacts={this.state.contacts}
-          deleteContact={deleteContact}
-        />
+        <Filter filter={filter} onFilterAlter={onFilterAlter} />
+        <ContactList contacts={contacts} deleteContact={deleteContact} />
       </div>
     );
   }
