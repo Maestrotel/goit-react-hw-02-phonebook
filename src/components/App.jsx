@@ -50,6 +50,9 @@ export class App extends Component {
   render() {
     const { create, deleteContact, onFilterAlter } = this;
     const { contacts, filter } = this.state;
+    const filteredContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
 
     return (
       <div>
@@ -58,7 +61,10 @@ export class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} onFilterAlter={onFilterAlter} />
-        <ContactList contacts={contacts} deleteContact={deleteContact} />
+        <ContactList
+          contacts={filteredContacts}
+          deleteContact={deleteContact}
+        />
       </div>
     );
   }
