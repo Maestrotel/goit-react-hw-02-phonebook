@@ -49,7 +49,7 @@ export class App extends Component {
 
   render() {
     const { create, deleteContact, onFilterAlter } = this;
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     const filteredContacts = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
@@ -58,7 +58,6 @@ export class App extends Component {
       <div>
         <h1>Phonebook</h1>
         <ContactForm create={create} />
-
         <h2>Contacts</h2>
         <Filter filter={filter} onFilterAlter={onFilterAlter} />
         <ContactList
