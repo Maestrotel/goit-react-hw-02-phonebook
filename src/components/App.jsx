@@ -38,18 +38,18 @@ export class App extends Component {
     }));
   };
 
-  deleteContact = e => {
+  deleteContact = contactId => {
     this.setState({
-      contacts: this.state.contacts.filter(el => el.id !== e),
+      contacts: this.state.contacts.filter(el => el.id !== contactId),
     });
   };
 
-  onFilterAlter = e => {
+  onFilterChange = e => {
     this.setState({ filter: e.target.value });
   };
 
   render() {
-    const { create, deleteContact, onFilterAlter } = this;
+    const { create, deleteContact, onFilterChange } = this;
     const { filter } = this.state;
     const filteredContacts = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
@@ -60,7 +60,7 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm create={create} />
         <h2>Contacts</h2>
-        <Filter filter={filter} onFilterAlter={onFilterAlter} />
+        <Filter filter={filter} onFilterChange={onFilterChange} />
         <ContactList
           contacts={filteredContacts}
           deleteContact={deleteContact}
