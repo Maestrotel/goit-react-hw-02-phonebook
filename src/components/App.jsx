@@ -16,19 +16,18 @@ export class App extends Component {
     filter: '',
   };
 
-  create = ({ name, number }) => {
+  onAddContact = ({ name, number }) => {
     const newContact = {
       id: nanoid(),
       name,
       number,
     };
 
-    const shifting = this.state.contacts.filter(
+    const contactPresent = this.state.contacts.filter(
       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase()
     );
 
-    if (shifting.length) {
-      const { name } = newContact;
+    if (contactPresent.length) {
       alert(`${name} is already in contacts`);
       return;
     }
@@ -49,7 +48,7 @@ export class App extends Component {
   };
 
   render() {
-    const { create, deleteContact, onFilterChange } = this;
+    const { onAddContact, deleteContact, onFilterChange } = this;
     const { filter } = this.state;
     const filteredContacts = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
@@ -58,7 +57,7 @@ export class App extends Component {
     return (
       <div className={css.mainSection}>
         <h1>Phonebook</h1>
-        <ContactForm create={create} />
+        <ContactForm onAddContact={onAddContact} />
         <h2>Contacts</h2>
         <Filter filter={filter} onFilterChange={onFilterChange} />
         <ContactList

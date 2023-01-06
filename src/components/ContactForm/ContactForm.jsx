@@ -12,7 +12,7 @@ export class ContactForm extends Component {
     e.preventDefault();
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    this.props.create(this.state);
+    this.props.onAddContact(this.state);
     this.reset();
   };
 
@@ -71,5 +71,5 @@ export class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  create: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
 };
